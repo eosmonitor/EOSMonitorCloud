@@ -6,9 +6,14 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.26.0",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "eosjs": "^15.0.3",
     "express": "~4.15.5",
     "jade": "~1.11.0",
     "lvyii-engine": "^0.0.17",

@@ -1,9 +1,24 @@
+require('babel-register')
+require("babel-polyfill")
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var LY = require('lvyii-engine');
+
+LY.init({
+  appId: process.env.APP_ID,
+  appKey: process.env.APP_SECRET,
+  serverURLs: {
+    auth: process.env.AUTH_SERVER_URL,
+    api: process.env.API_SERVER_URL,
+    engine: process.env.ENGINE_SERVER_URL
+  }
+})
+
+require('./cloud');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -21,6 +36,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(LY.express());
 
 app.use('/', index);
 app.use('/users', users);
